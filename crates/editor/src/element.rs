@@ -1164,6 +1164,8 @@ impl EditorElement {
 
                 cx.with_z_index(0, |cx| self.paint_redactions(text_bounds, &layout, cx));
 
+                cursors.sorted_by_key(|cursor| cursor.cursor_name.as_ref().unwrap().string.clone());
+
                 cx.with_z_index(1, |cx| {
                     for cursor in cursors {
                         cursor.paint(content_origin, cx);
